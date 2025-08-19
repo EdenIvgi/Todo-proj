@@ -1,3 +1,7 @@
+const { useEffect, useState } = React
+const { useSelector, useDispatch } = ReactRedux
+const { Link, useSearchParams } = ReactRouterDOM
+
 import { TodoFilter } from "../cmps/TodoFilter.jsx"
 import { TodoList } from "../cmps/TodoList.jsx"
 import { loadTodos, removeTodo, saveTodo, setFilterSort } from '../store/actions/todo.actions.js'
@@ -7,10 +11,6 @@ import { TodoSort } from '../cmps/TodoSort.jsx'
 import { todoService } from '../services/todo.service.js'
 import { PaginationBtns } from "../cmps/PaginationBtns.jsx"
 import { utilService } from "../services/util.service.js"
-
-const { useEffect, useState } = React
-const { useSelector, useDispatch } = ReactRedux
-const { Link, useSearchParams } = ReactRouterDOM
 
 export function TodoIndex() {
 
@@ -35,6 +35,7 @@ export function TodoIndex() {
             })
             .catch(() => showErrorMsg('Had trouble removing the todo'))
     }
+
     function onToggleTodo(todo) {
         const todoToSave = { ...todo, isDone: !todo.isDone }
         saveTodo(todoToSave)
@@ -47,7 +48,7 @@ export function TodoIndex() {
             .catch(() => showErrorMsg('Had trouble updating the todo'))
     }
 
-      function onSetFilterSort(filterSort) {
+    function onSetFilterSort(filterSort) {
         setFilterBy(_filterBy => ({ ..._filterBy, ...filterSort }))
     }
 
