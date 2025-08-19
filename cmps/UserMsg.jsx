@@ -11,12 +11,10 @@ export function UserMsg() {
     useEffect(() => {
         const unsubscribe = eventBusService.on('show-user-msg', msg => {
             setMsg(msg)
-            setTimeout(onCloseMsg, 1500)
+            setTimeout(onCloseMsg, 2500)
         })
 
-        return () => {
-            unsubscribe()
-        }
+        return () => unsubscribe()
     }, [])
 
     function onCloseMsg() {
