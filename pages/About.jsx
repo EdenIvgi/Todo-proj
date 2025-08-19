@@ -1,6 +1,5 @@
 const { useRef, useState } = React
 const { Outlet, NavLink } = ReactRouterDOM
-// const { PropTypes } = PropTypes
 
 import { utilService } from '../services/util.service.js'
 import { AboutTeam } from '../cmps/AboutTeam.jsx'
@@ -59,7 +58,7 @@ export function About() {
     )
 }
 
-function FancyBox({title = 'Hello', onClose, children}) {
+function FancyBox({ title = 'Hello', onClose, children }) {
     return <div className="fancy-box">
         <button style={{ float: 'right' }} onClick={onClose}>x</button>
         <h3>{title}</h3>
@@ -98,12 +97,12 @@ function SplitPane(props) {
 const Title = (props) => <h1>Title: {props.txt}</h1>
 
 Title.propTypes = {
-   txt(props, propName, componentName){
-      if(!(propName in props)){
-         throw new Error(`missing ${propName}`)
-      }
-      if(props[propName].length < 6){
-         throw new Error(`${propName} was too short`)
-      }
-   }
+    txt(props, propName, componentName) {
+        if (!(propName in props)) {
+            throw new Error(`missing ${propName}`)
+        }
+        if (props[propName].length < 6) {
+            throw new Error(`${propName} was too short`)
+        }
+    }
 }
