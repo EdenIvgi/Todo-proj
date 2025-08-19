@@ -26,15 +26,14 @@ export function TodoIndex() {
     }, [filterBy])
 
     function onRemoveTodo(todoId) {
-        todoService.remove(todoId)
+        const ans = confirm('Do you want to delete this todo?')
+        if (!ans) return
+        removeTodo(todoId)
             .then(() => {
-                setTodos(prevTodos => prevTodos.filter(todo => todo._id !== todoId))
-                showSuccessMsg(`Todo removed`)
+                console.log('removed todo ' + todoId);
+                showSuccessMsg(`Removed todo with ${todoId} id successfully`)
             })
-            .catch(err => {
-                console.log('err:', err)
-                showErrorMsg('Cannot remove todo ' + todoId)
-            })
+            .catch(() => showErrorMsg('Had trouble removing the todo'))
     }
 
     function onToggleTodo(todo) {
