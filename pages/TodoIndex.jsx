@@ -1,31 +1,28 @@
 import { TodoFilter } from "../cmps/TodoFilter.jsx"
 import { TodoList } from "../cmps/TodoList.jsx"
-import { DataTable } from "../cmps/data-table/DataTable.jsx"
-import { todoService } from "../services/todo.service.js"
+import { loadTodos, removeTodo, saveTodo, setFilterSort } from '../store/actions/todo.actions.js'
+import { changeBalance } from '../store/actions/user.actions.js'
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { TodoSort } from '../cmps/TodoSort.jsx'
+import { todoService } from '../services/todo.service.js'
+import { PaginationBtns } from "../cmps/PaginationBtns.jsx"
+import { utilService } from "../services/util.service.js"
 
-const { useState, useEffect } = React
+const { useEffect, useState } = React
+const { useSelector, useDispatch } = ReactRedux
 const { Link, useSearchParams } = ReactRouterDOM
 
 export function TodoIndex() {
 
-    const [todos, setTodos] = useState(null)
-
-    // Special hook for accessing search-params:
     const [searchParams, setSearchParams] = useSearchParams()
-
-    const defaultFilter = todoService.getFilterFromSearchParams(searchParams)
-
-    const [filterBy, setFilterBy] = useState(defaultFilter)
+    const [filterBy, setFilterBy] = useState(todoService.getFilterFromSearchParams(searchParams))
+    const todos = useSelector((storeState) => storeState.todos)
+    const isLoading = useSelector(storeState => storeState.isLoading)
+    const maxPage = useSelector((storeState) => storeState.maxPage)
 
     useEffect(() => {
-        setSearchParams(filterBy)
-        todoService.query(filterBy)
-            .then(todos => setTodos(todos))
-            .catch(err => {
-                console.eror('err:', err)
-                showErrorMsg('Cannot load todos')
-            })
+        loadTodos(filterBy)
+        setSearchParams(utilService.getTruthyValues(filterBy))
     }, [filterBy])
 
     function onRemoveTodo(todoId) {
