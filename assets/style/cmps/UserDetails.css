@@ -1,0 +1,17 @@
+.activities-form {
+    display: flex;
+    gap: .5em;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.activities-form label:not(:first-of-type) {
+    margin-left: 2em;
+}
+
+.activities-list li {
+    padding-block: .6em;
+    cursor: revert;
+    border-bottom: 2px solid #ccc;
+
+}

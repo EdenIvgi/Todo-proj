@@ -22,3 +22,18 @@
 @import "cmps/TodoPreview.css";
 @import "cmps/TodoDetails.css";
 @import "cmps/TodoEdit.css";
+@import "cmps/login.css";
+@import "cmps/UserDetails.css";
+@import "cmps/todoIndex.css";
+@import "cmps/AppFooter.css";
+
+
+.pagination-btns {
+    margin-block: 10px;
+}
+
+.loader {
+    text-align: center;
+    padding-top: 10vh;
+    font-size: 2rem;
+}

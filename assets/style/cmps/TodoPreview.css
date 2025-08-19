@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.todo-preview h2 {
+    cursor: pointer;
+}
+
 .todo-preview h4 {
     text-transform: capitalize;
     color: black;

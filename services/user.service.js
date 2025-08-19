@@ -99,7 +99,7 @@ function addActivity(txt) {
         txt,
         at: Date.now()
     }
-
+    
     const loggedinUser = getLoggedinUser()
     if (!loggedinUser) return Promise.reject('No loggedin user')
     return getById(loggedinUser._id)
